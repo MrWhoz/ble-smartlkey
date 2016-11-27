@@ -130,26 +130,25 @@ public class BluetoothLeService extends Service {
         sendBroadcast(intent);
     }
     public void ring(){
-        char ds = 'R';
-        mGattCharacteristics.setValue(String.valueOf(ds));
+        char sendC = 'R';
+        mGattCharacteristics.setValue(String.valueOf(sendC));
         mBluetoothGatt.writeCharacteristic(mGattCharacteristics);
-        Log.d("goi ham ring", "ben service");
+        Log.d("Ring function Call", "Service");
     }
     public void stop(){
-        char ds = 'S';
-        mGattCharacteristics.setValue(String.valueOf(ds));
+        char sendC = 'S';
+        mGattCharacteristics.setValue(String.valueOf(sendC));
         mBluetoothGatt.writeCharacteristic(mGattCharacteristics);
         if(mp!= null){
             mp.stop();
         }
-
-        Log.d("goi ham ring", "ben service");
+        Log.d("Stop function Call", "Service");
     }
     public void light(){
-        char ds = 'L';
-        mGattCharacteristics.setValue(String.valueOf(ds));
+        char sendC = 'L';
+        mGattCharacteristics.setValue(String.valueOf(sendC));
         mBluetoothGatt.writeCharacteristic(mGattCharacteristics);
-        Log.d("goi ham ring", "ben service");
+        Log.d("Light function Call", "Service");
     }
     private void broadcastUpdate(final String action,
                                  final BluetoothGattCharacteristic characteristic) {

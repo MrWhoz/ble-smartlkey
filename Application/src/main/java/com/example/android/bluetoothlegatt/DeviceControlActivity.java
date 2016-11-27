@@ -101,7 +101,6 @@ public class DeviceControlActivity extends Activity {
     private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            //Log.d("aaaa","aaaaa");
             final String action = intent.getAction();
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 mConnected = true;
@@ -110,15 +109,12 @@ public class DeviceControlActivity extends Activity {
             } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
                 mConnected = false;
                 updateConnectionState(R.string.disconnected);
-                mp = new MediaPlayer();
                 try {
-                    mp.setDataSource("/sdcard/1.mp3");
-                    mp.prepare();
+                  mp=MediaPlayer.create(this,R.raw.noti);
+                  mp.start();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                mp.start();
-
                 invalidateOptionsMenu();
                 clearUI();
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
@@ -140,8 +136,6 @@ public class DeviceControlActivity extends Activity {
                 @Override
                 public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
                                             int childPosition, long id) {
-                    System.out.print("aaaaaaaaaaa");
-                    Log.d("aaaa","aaaaa");
                     if (mGattCharacteristics != null) {
                         final BluetoothGattCharacteristic characteristic =
                                 mGattCharacteristics.get(groupPosition).get(childPosition);
